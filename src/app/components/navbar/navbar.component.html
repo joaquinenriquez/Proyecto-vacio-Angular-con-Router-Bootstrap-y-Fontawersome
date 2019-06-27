@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <a class="navbar-brand" routerLink="/">{{nombreApp}}</a>
+
+  <!-- #region Menu Responsive -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar"
+    aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- #endregion -->
+
+  <div class="collapse navbar-collapse" id="mainNavbar">
+
+    <!-- #region Links izquierda -->
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item" *ngIf="estaLogeado">
+        <a class="nav-link" routerLink="/offers">Offers
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="estaLogeado">
+        <a class="nav-link" routerLink="/admin/listado">Listado1</a>
+      </li>
+
+      <li class="nav-item" *ngIf="estaLogeado">
+        <a class="nav-link" routerLink="/admin/listado">Listado</a>
+      </li>
+
+      <li class="nav-item" *ngIf="estaLogeado">
+        <a class="nav-link" routerLink="/admin/alta">Alta</a>
+      </li>
+
+    </ul>
+    <!-- #endregion -->
+
+    <!-- #region Links derecha -->
+
+    <ul class="navbar-nav ml-auto">
+
+      <li class="nav-item" *ngIf="!estaLogeado">
+        <a class="nav-link" routerLink="/admin/altausuario">Crear Usuario
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="!estaLogeado">
+        <a class="nav-link" routerLink="/login">Login
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="estaLogeado">
+        <a href="#" class="nav-link">{{this.usuarioActual.email}}
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="estaLogeado">
+        <a href="#" class="nav-link" (click)="onLogoutUsuario()">Salir
+        </a>
+      </li>
+
+      <!-- #endregion -->
+
+    </ul>
+  </div>
+</nav>
