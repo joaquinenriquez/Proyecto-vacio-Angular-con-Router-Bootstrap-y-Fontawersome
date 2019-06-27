@@ -11,21 +11,33 @@ export class NavbarComponent implements OnInit {
 
   nombreApp = 'Veterinaria';
   estaLogeado = false;
-  usuarioActual: IUsuario;
+  esAdmin = false;
+  usuarioActual: IUsuario = {};
+  userUid: string;
 
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.getUsuarioLogeado();
+    this.traerUsuarioActual();
   }
 
-  getUsuarioLogeado() {
-    this.authService.isLogeado().subscribe(auth => {
-      if (auth) {
-        console.log('navbar', 'Usuario Logeado');
+  traerUsuarioActual() {
+    this.authService.isLogeado().subscribe( datosUsuario => {
+      if (datosUsuario) {
+        this.userUid = datosUsuario.uid; // Nos quedamos con el userid
+        console.log(`usuario logeado: ${this.userUid}`);
+        this.usuarioActual.id = datosUsuario.uid;
         this.estaLogeado = true;
-        this.usuarioActual = this.authService.getUsuarioActual();
+        this.authService.isAdmin(this.userUid).subscribe (usuario => {
+          if (usuario.tipoUsuario === 'administrador') {
+            this.esAdmin = true;
+          } else {
+            this.esAdmin = false;
+          }
+          this.usuarioActual.email = usuario.email;
+          this.usuarioActual.tipoUsuario = usuario.tipoUsuario;
+        });
       } else {
         console.log('navbar', 'El usuario no esta Logeado');
         this.estaLogeado = false;

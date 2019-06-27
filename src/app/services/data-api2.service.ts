@@ -1,36 +1,32 @@
-import { Injectable, OnInit } from '@angular/core';
-import { IMascota } from '../models/imascota';
+import { Injectable } from '@angular/core';
+import { ITurno } from '../models/ITurno';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-
 @Injectable({
   providedIn: 'root'
 })
-export class DataApiService implements OnInit {
+export class DataApi2Service {
 
   /* #region  Constructor */
 
   constructor(private afs: AngularFirestore) {
-    this.coleccion = this.afs.collection<IMascota>('mascotas');
+    this.coleccion = this.afs.collection<ITurno>('turnos');
 
-    console.log('Inicialice');
+    console.log('Inicialice2');
   }
 
   /* #endregion */
 
-  ngOnInit(): void {
-
-  }
 
   /* #region  Atributos */
 
-  private coleccion: AngularFirestoreCollection<IMascota>;
-  private listaObservable: Observable<IMascota[]>;
-  private doc: AngularFirestoreDocument<IMascota>;
-  private unaMascotaObservable: Observable<IMascota>;
-  public seleccionado: IMascota = {
+  private coleccion: AngularFirestoreCollection<ITurno>;
+  private listaObservable: Observable<ITurno[]>;
+  private doc: AngularFirestoreDocument<ITurno>;
+  private unaMascotaObservable: Observable<ITurno>;
+  public seleccionado: ITurno = {
     id: null
   };
 
@@ -38,18 +34,18 @@ export class DataApiService implements OnInit {
 
   /* #region  Métodos */
 
-  agregar(unaMascota: IMascota): void {
+  agregar(unaMascota: ITurno): void {
     this.coleccion.add(unaMascota);
   }
 
   eliminar(id: string): void {
-    this.doc = this.afs.doc<IMascota>(`mascotas/${id}`); // Filtramos por id
+    this.doc = this.afs.doc<ITurno>(`turnos/${id}`); // Filtramos por id
     this.doc.delete();
   }
 
-  actualizar(unaMascota: IMascota): void {
+  actualizar(unaMascota: ITurno): void {
     const id = unaMascota.id;
-    this.doc = this.afs.doc<IMascota>(`mascotas/${id}`); // Filtramos por id
+    this.doc = this.afs.doc<ITurno>(`turnos/${id}`); // Filtramos por id
     this.doc.update(unaMascota);
   }
 
@@ -58,7 +54,7 @@ export class DataApiService implements OnInit {
     return this.listaObservable = this.coleccion.snapshotChanges()
     .pipe(map(changes => {
       return changes.map(action => {
-        const data = action.payload.doc.data() as IMascota;
+        const data = action.payload.doc.data() as ITurno;
         data.id = action.payload.doc.id;
         return data;
       });

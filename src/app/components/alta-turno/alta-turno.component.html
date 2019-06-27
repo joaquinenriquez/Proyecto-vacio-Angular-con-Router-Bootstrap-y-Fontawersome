@@ -1,0 +1,64 @@
+<div class="modal fade" id="altaTurno" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <!-- #region Encabezado -->
+      <div class="modal-header">
+
+        <!-- #region Titulo -->
+        <h5 class="modal-title" id="exampleModalLabel">
+          Nuevo
+        </h5>
+        <!-- #endregion -->
+
+        <!-- #region Boton de cerrar ventana -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- #endregion -->
+
+      </div>
+      <!-- #endregion -->
+
+      <div class="modal-body">
+
+        <!-- #region Formulario -->
+        <form #formulario="ngForm" (ngSubmit)="onGuardar(formulario)">
+
+          <input type="hidden" name="id" [(ngModel)]="this.dataApi.seleccionado.id">
+          <input type="hidden" name="userUid" [value]="userUid">
+
+          <!-- #region Segunda Fila -->
+          <div class="form-row">
+
+            <div class="form-group">
+              <label class="col-form-label" for="meeting-time">Fecha:</label>
+              <input class="form-control" type="datetime-local" id="meeting-time"
+              name="meeting-time" value="2019-06-28T19:30"
+              min="2019-06-28T00:00" max="2018-06-14T00:00">
+            </div>
+
+          </div>
+          <!-- #endregion -->
+
+          <!-- #region Sexta Fila -->
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCerrar>Cerrar</button>
+
+            <button type="submit"
+              class="btn btn-primary">Solicitar</button>
+
+          </div>
+
+        </form>
+
+        <!-- #endregion -->
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

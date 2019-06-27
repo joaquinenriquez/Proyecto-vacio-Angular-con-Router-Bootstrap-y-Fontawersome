@@ -9,7 +9,7 @@ export const environment = {
     authDomain: 'parcial-2329a.firebaseapp.com',
     databaseURL: 'https://parcial-2329a.firebaseio.com',
     projectId: 'parcial-2329a',
-    storageBucket: '',
+    storageBucket: 'parcial-2329a.appspot.com',
     messagingSenderId: '145050027259',
     appId: '1:145050027259:web:bce666fd4241f35f'
   }

@@ -10,6 +10,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 
 // Formularios
@@ -18,6 +19,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { HomeComponent } from './components/home/home.component';
+import { AltaMascotaComponent } from './components/alta-mascota/alta-mascota.component';
+import { ListadoMascotasComponent } from './components/listado-mascotas/listado-mascotas.component';
+import { ListadoTurnosComponent } from './components/listado-turnos/listado-turnos.component';
+import { AltaTurnoComponent } from './components/alta-turno/alta-turno.component';
 
 
 @NgModule({
@@ -26,7 +31,11 @@ import { HomeComponent } from './components/home/home.component';
     AltaComponent,
     NavbarComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AltaMascotaComponent,
+    ListadoMascotasComponent,
+    ListadoTurnosComponent,
+    AltaTurnoComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,8 @@ import { HomeComponent } from './components/home/home.component';
   ],
   providers: [
     AngularFireAuth,
-    AngularFirestore
+    AngularFirestore,
+    AngularFireStorage
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,107 @@
+<div class="modal fade" id="altaModificacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <!-- #region Encabezado -->
+      <div class="modal-header">
+
+        <!-- #region Titulo -->
+        <h5 class="modal-title" id="exampleModalLabel">
+          {{!this.dataApi.seleccionado.id? 'Nuevo' : 'Modificar'}}
+        </h5>
+        <!-- #endregion -->
+
+        <!-- #region Boton de cerrar ventana -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <!-- #endregion -->
+
+      </div>
+      <!-- #endregion -->
+
+      <div class="modal-body">
+
+        <!-- #region Formulario -->
+        <form #formulario="ngForm" (ngSubmit)="onGuardar(formulario)">
+
+          <input type="text" name="id" [(ngModel)]="this.dataApi.seleccionado.id">
+          <input type="text" name="userUid" [value]="userUid">
+
+          <!-- #region Primer Fila -->
+          <div class="form-group">
+            <label for="nombre" class="col-form-label">Nombre:</label>
+            <input type="text" class="form-control" name="nombre" [(ngModel)]="this.dataApi.seleccionado.nombre">
+          </div>
+          <!-- #endregion -->
+
+          <!-- #region Segunda Fila -->
+          <div class="form-row">
+
+            <div class="form-group col-md-6">
+              <label for="tipo">Tipo:</label>
+              <select name="tipo" class="form-control" [(ngModel)]="this.dataApi.seleccionado.tipo">
+                <option value="perro">Perro</option>
+                <option value="gato">Gato</option>
+                <option value="huron">Huron</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="raza">Raza</label>
+              <input type="text" name="raza" class="form-control" placeholder="Raza"
+                [(ngModel)]="this.dataApi.seleccionado.raza">
+            </div>
+
+          </div>
+          <!-- #endregion -->
+
+          <!-- #region Tercer Fila -->
+
+          <div class="form-row">
+
+            <div class="form-group col-md-6">
+              <label for="edad">Edad</label>
+              <input type="text" name="edad" class="form-control" placeholder="edad"
+                [(ngModel)]="this.dataApi.seleccionado.edad">
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="duenio">Dueño</label>
+              <input type="text" name="duenio" class="form-control" placeholder="duenio"
+                [(ngModel)]="this.dataApi.seleccionado.duenio">
+            </div>
+
+          </div>
+          <!-- #endregion -->
+
+          <div class="form-group">
+            <h5>Seleccionar foto:</h5>
+            <input type="file" accept="image/*" (change)="subirFoto($event)" #archivo>
+          </div>
+
+
+          <!-- #region Sexta Fila -->
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnCerrar>Cerrar</button>
+            <input #urlFoto type="hidden" [value]="this.urlImagen | async">
+            <button *ngIf="this.urlImagen | async; else btnDisabled" type="submit"
+              class="btn btn-primary">{{this.dataApi.seleccionado.id === null ? 'Agregar' : 'Actualizar'}}</button>
+            <ng-template #btnDisabled>
+              <button type="submit" disabled=true
+                class="btn btn-secondary">{{this.dataApi.seleccionado.id === null ? 'Agregar' : 'Actualizar'}}</button>
+            </ng-template>
+          </div>
+
+        </form>
+
+        <!-- #endregion -->
+
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

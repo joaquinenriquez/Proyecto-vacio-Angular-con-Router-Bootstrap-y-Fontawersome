@@ -17,29 +17,33 @@ export class LoginComponent implements OnInit {
   isError = false;
   /* #endregion */
 
+  /* #region  Constructor */
   constructor(private authService: AuthService, private router: Router) { }
+  /* #endregion */
 
   ngOnInit() {
   }
 
+  /* #region  Métodos */
   onLogin(form: NgForm): void {
     if (form.valid) {
       this.authService.loginConEmail(this.email, this.password)
-      .then(datosUsuario => { this.onLoginRedireccionar(); }) // En caso de que salga todo bien
-      .catch(err => {
-        this.isError = true;
-        this.mensajeError = err.message;
-        console.log('Ocurrio un error:', err.message);
-      });
+        .then(datosUsuario => { this.onLoginRedireccionar(); }) // En caso de que salga todo bien
+        .catch(err => {
+          this.isError = true;
+          this.mensajeError = err.message;
+          console.log('Ocurrio un error:', err.message);
+        });
     } else {
       this.isError = true;
       this.mensajeError = 'Datos no validos';
     }
   }
 
-  onLoginRedireccionar(){
-    this.router.navigate(['admin/altausuario']);
+  onLoginRedireccionar() {
+    this.router.navigate(['home']);
   }
+  /* #endregion */
 
 
 }

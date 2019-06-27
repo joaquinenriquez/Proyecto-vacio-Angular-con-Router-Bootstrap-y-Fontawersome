@@ -1,0 +1,47 @@
+<br>
+<section class="row mt-5">
+    <div class="col">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Raza</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Dueño</th>
+            <th scope="col">Foto</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let unaMascota of listadoMascotas; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{unaMascota.nombre}}</td>
+            <td>{{unaMascota.tipo}}</td>
+            <td>{{unaMascota.raza}}</td>
+            <td>{{unaMascota.edad}}</td>
+            <td>{{unaMascota.duenio}}</td>
+            <td><img src="{{unaMascota.foto}}" alt="" border=3 height=100 width=100></td>
+            <td *ngIf="unaMascota.userUid == userUid || esAdmin == true; else noOwner">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#altaModificacion" (click)="seleccionar(unaMascota)">Modificar</button>
+            </td>
+            <ng-template #noOwner>
+              <td>
+                <button class="btn btn-secondary" disabled="true">Modificar</button>
+              </td>
+            </ng-template>
+            <td *ngIf="esAdmin == true; else noAdmin">
+              <button class="btn btn-danger" (click)="eliminar(unaMascota.id)">Eliminar</button>
+            </td>
+            <ng-template #noAdmin>
+              <td>
+                <button class="btn btn-danger" disabled="true">Eliminar</button>
+              </td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>

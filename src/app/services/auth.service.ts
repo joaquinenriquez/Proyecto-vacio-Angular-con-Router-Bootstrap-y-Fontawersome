@@ -56,14 +56,14 @@ export class AuthService {
   }
 
 
-  updateDatosUsuario(usuario, tipo: string) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuarios/${usuario.uid}`);
-    const datos: IUsuario = {
-      id: usuario.uid,
-      email: usuario.email,
+  updateDatosUsuario(datosUsuario, tipo: string) {
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`usuarios/${datosUsuario.uid}`);
+    const data: IUsuario = {
+      id: datosUsuario.uid,
+      email: datosUsuario.email,
       tipoUsuario: tipo
     };
-    return userRef.set(datos, { merge: true });
+    return userRef.set(data, { merge: true });
   }
 
   logoutUsuario() {
@@ -72,6 +72,10 @@ export class AuthService {
 
   isLogeado() {
     return this.afsAuth.authState.pipe(map(auth => auth)); // Operamos sobre el flujo de datos del observable.
+  }
+
+  isAdmin(id) {
+    return this.afs.doc<IUsuario>(`usuarios/${id}`).valueChanges();
   }
 
   getUsuarioActual(): IUsuario {

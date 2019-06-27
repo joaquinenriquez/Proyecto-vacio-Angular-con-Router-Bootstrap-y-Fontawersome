@@ -39,7 +39,7 @@ export class AltaComponent implements OnInit {
       console.log('Ocurrio un error:', err.message);
       this.isError = true;
       this.msgError = `Ocurrrio un error!: ${err.message}`;
-    }))
+    }));
   }
 
   }

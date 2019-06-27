@@ -1,0 +1,42 @@
+<br>
+<section class="row mt-5">
+    <div class="col">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let unTurno of listadoTurnos; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{unTurno.fecha}}</td>
+            <td>{{unTurno.hora}}</td>
+            <td>{{unTurno.usuario}}</td>
+            <td><img src="{{unTurno.foto}}" alt="" border=3 height=100 width=100></td>
+            <td *ngIf="unTurno.userUid == userUid || esAdmin == true; else noOwner">
+              <button class="btn btn-primary" data-toggle="modal" data-target="#altaModificacion" (click)="seleccionar(unTurno)">Modificar</button>
+            </td>
+            <ng-template #noOwner>
+              <td>
+                <button class="btn btn-secondary" disabled="true">Modificar</button>
+              </td>
+            </ng-template>
+            <td *ngIf="esAdmin == true; else noAdmin">
+              <button class="btn btn-danger" (click)="eliminar(unTurno.id)">Eliminar</button>
+            </td>
+            <ng-template #noAdmin>
+              <td>
+                <button class="btn btn-danger" disabled="true">Eliminar</button>
+              </td>
+            </ng-template>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>

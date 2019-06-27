@@ -14,20 +14,21 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item" *ngIf="estaLogeado">
-        <a class="nav-link" routerLink="/offers">Offers
+        <a class="nav-link" routerLink="/altamascota" data-toggle="modal" data-target=#altaModificacion>Alta Mascota
         </a>
       </li>
 
       <li class="nav-item" *ngIf="estaLogeado">
-        <a class="nav-link" routerLink="/admin/listado">Listado1</a>
+        <a class="nav-link" routerLink="/listado-mascotas">Listado de mascotas</a>
       </li>
 
-      <li class="nav-item" *ngIf="estaLogeado">
-        <a class="nav-link" routerLink="/admin/listado">Listado</a>
+      <li class="nav-item" *ngIf="!esAdmin">
+          <a class="nav-link" routerLink="/altamascota" data-toggle="modal" data-target=#altaTurno>Solicitar turno
+          </a>
       </li>
 
-      <li class="nav-item" *ngIf="estaLogeado">
-        <a class="nav-link" routerLink="/admin/alta">Alta</a>
+      <li class="nav-item" *ngIf="esAdmin">
+        <a class="nav-link" routerLink="/admin/listado-turnos">Listado de turnos</a>
       </li>
 
     </ul>
@@ -62,3 +63,5 @@
     </ul>
   </div>
 </nav>
+<app-alta-mascota [userUid]="userUid"></app-alta-mascota>
+<app-alta-turno [userUid]="userUid"></app-alta-turno>
