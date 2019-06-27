@@ -8,7 +8,7 @@
             <div class="card-body text-center">
 
               <!-- #region Formulario -->
-              <form #formRegister="ngForm" (ngSubmit)="crear()">
+              <form #formRegister="ngForm" (ngSubmit)="crearUsuario()">
 
                 <h1 class="h3 mb-3 font-weight-normal">Alta</h1>
 
@@ -46,7 +46,7 @@
                 <!-- #region Tipo de usuario -->
                 <div class="form-group">
                   <label for="TipoUsuario">Tipo de usuario</label>
-                  <select name="TipoUsuario" class="form-control">
+                  <select name="TipoUsuario" class="form-control" [(ngModel)]="tipoUsuario">
                     <option value="administrador">Administrador</option>
                     <option value="cliente">Cliente</option>
                   </select>

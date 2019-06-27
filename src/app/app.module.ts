@@ -9,7 +9,7 @@ import { AltaComponent } from './components/admin/alta/alta.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 // Formularios
@@ -17,6 +17,7 @@ import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
     AppComponent,
     AltaComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers: [AngularFireAuth],
+  providers: [
+    AngularFireAuth,
+    AngularFirestore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

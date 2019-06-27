@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { IUsuario } from 'src/app/models/iusuario';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alta',
@@ -21,14 +23,23 @@ export class AltaComponent implements OnInit {
 
   /* #endregion */
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
 
   }
 
-  crear() {
-
+  crearUsuario() {
+    this.authService.registrarUsuario(this.email, this.password, this.tipoUsuario)
+    .then((result) => {
+      this.isError = false;
+      this.router.navigate(['home']);
+    })
+    .catch((err => {
+      console.log('Ocurrio un error:', err.message);
+      this.isError = true;
+      this.msgError = `Ocurrrio un error!: ${err.message}`;
+    }))
   }
 
   }
